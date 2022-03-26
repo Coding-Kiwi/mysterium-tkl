@@ -11,5 +11,5 @@ See the [build environment setup](https://docs.qmk.fm/#/getting_started_build_to
 ## Using QMK MYSYS
 
 ```
-qmk compile -kb 42keebs/mysterium/v15d -km iso
+qmk compile -kb 42keebs/mysterium -km iso
 ```

@@ -13,6 +13,7 @@ F_CPU = 16000000
 #   ATmega32A    bootloadHID
 #   ATmega328P   USBasp
 BOOTLOADER = USBasp
+# TODO mysterium tkl is ATmega32A, so why is it USBasp and not bootloadHID
 
 # Build Options
 #   change yes to no to disable
@@ -33,4 +34,9 @@ UNICODE_ENABLE = no         # Unicode
 BLUETOOTH_ENABLE = no       # Enable Bluetooth with the Adafruit EZ-Key HID
 AUDIO_ENABLE = no           # Audio output on port C6
 ENCODER_ENABLE = yes
+
 OLED_ENABLE = yes
+OLED_DRIVER = SSD1306
+
+WPM_ENABLE = yes
+SPACE_CADET_ENABLE = no	# this is somehow needed for fn + r

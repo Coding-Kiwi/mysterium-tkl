@@ -18,7 +18,25 @@
 
 #include "quantum.h"
 
-// helper to make keymaps easier to read?
+enum oled_modes {
+  OLED_BONGO,
+  OLED_BONGO_MIN,
+  OLED_OFF,
+  _NUM_OLED_MODES
+};
+
+// OLED Behavior
+extern uint8_t oled_mode;
+extern bool oled_repaint_requested;
+extern bool oled_wakeup_requested;
+extern uint32_t oled_sleep_timer;
+
+void oled_request_wakeup(void);
+void oled_request_repaint(void);
+bool oled_task_needs_to_repaint(void);
+
+
+// helper variable to make keymaps easier to read?
 #define _x_ KC_NO
 
 // here we define the function 'LAYOUT_tkl_iso' that we use in keymap.c

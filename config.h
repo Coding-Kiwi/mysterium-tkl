@@ -34,6 +34,15 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define ENCODERS_PAD_B { B6 }
 #define ENCODER_RESOLUTION 4
 
+/* oled config */
+#define CUSTOM_OLED_TIMEOUT 60000
+
+// configure oled driver for the 128x32 oled
+#define OLED_UPDATE_INTERVAL 66 // ~15fps
+
+// OLED_TIMEOUT is incompatible with the OLED_OFF mode
+#define OLED_TIMEOUT 0
+
 /*
  * Keyboard Matrix Assignments
  *
@@ -69,6 +78,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  * This is userful for the Windows task manager shortcut (ctrl+shift+esc).
  */
 // #define GRAVE_ESC_CTRL_OVERRIDE
+// TODO do we need this
 
 /*
  * Force NKRO
@@ -149,18 +159,12 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
  *  These options are also useful to firmware size reduction.
  */
 
-/* disable debug print */
-//#define NO_DEBUG
-
-/* disable print */
-//#define NO_PRINT
-
 /* disable action features */
 //#define NO_ACTION_LAYER
-//#define NO_ACTION_TAPPING
-//#define NO_ACTION_ONESHOT
-//#define NO_ACTION_MACRO
-//#define NO_ACTION_FUNCTION
+#define NO_ACTION_TAPPING
+#define NO_ACTION_ONESHOT
+#define NO_ACTION_MACRO
+#define NO_ACTION_FUNCTION
 
 /*
  * MIDI options
