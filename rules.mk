@@ -39,4 +39,3 @@ OLED_ENABLE = yes
 OLED_DRIVER = SSD1306
 
 WPM_ENABLE = yes
-SPACE_CADET_ENABLE = no	# this is somehow needed for fn + r

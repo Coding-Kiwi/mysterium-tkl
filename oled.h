@@ -18,10 +18,7 @@ bool oled_task_kb(void) {
     switch (oled_mode) {
         default:
         case OLED_BONGO:
-            draw_bongo(false);
-            break;
-        case OLED_BONGO_MIN:
-            draw_bongo(true);
+            draw_bongo();
             break;
     }
     return false;
