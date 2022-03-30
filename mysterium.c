@@ -16,14 +16,28 @@
 #include "mysterium.h"
 #include "oled.h"
 
+bool win_key = false;
+
 bool encoder_update_kb(uint8_t index, bool clockwise) {
     if (!encoder_update_user(index, clockwise)) return false;
     oled_request_wakeup();
+
+    //fn + encoder is windows desktop change
+    if (win_key) {
+        if (clockwise) {
+            tap_code16(G(C(KC_RIGHT)));
+        } else {
+            tap_code16(G(C(KC_LEFT)));
+        }
+        return false;
+    }
+
     if (clockwise) {
       tap_code(KC_VOLU);
     } else {
       tap_code(KC_VOLD);
     }
+
     return true;
 }
 
@@ -34,17 +48,12 @@ void matrix_init_kb(void){
 
 bool process_record_kb(uint16_t keycode, keyrecord_t *record) {
   oled_request_wakeup();
-  // switch (keycode) {
-  //   case OLED_TOGG:
-  //     if(!clock_set_mode){
-  //       if (record->event.pressed) {
-  //         oled_mode = (oled_mode + 1) % _NUM_OLED_MODES;
-  //       }
-  //     }
-  //     return false;
-  //   default:
-  //     break;
-  // }
+
+  switch (keycode) {
+    case KC_LGUI:
+      win_key = record->event.pressed;
+      return true;
+  }
 
   return process_record_user(keycode, record);
 }
