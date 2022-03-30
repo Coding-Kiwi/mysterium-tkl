@@ -32,7 +32,8 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 #define ENCODERS_PAD_A { B5 }
 #define ENCODERS_PAD_B { B6 }
-#define ENCODER_RESOLUTION 4
+#define ENCODER_RESOLUTION 2
+//#define ENCODER_DEFAULT_POS 0x3
 
 /* oled config */
 #define CUSTOM_OLED_TIMEOUT 60000
@@ -161,7 +162,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 
 /* disable action features */
 //#define NO_ACTION_LAYER
-#define NO_ACTION_TAPPING
+//#define NO_ACTION_TAPPING
 #define NO_ACTION_ONESHOT
 #define NO_ACTION_MACRO
 #define NO_ACTION_FUNCTION
