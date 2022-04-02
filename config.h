@@ -34,6 +34,9 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define ENCODERS_PAD_B { B6 }
 #define ENCODER_RESOLUTION 4
 //#define ENCODER_DEFAULT_POS 0x3
+#define ENCODER_DIRECTION_FLIP
+
+#define TAP_CODE_DELAY 10
 
 /* oled config */
 #define CUSTOM_OLED_TIMEOUT 60000
