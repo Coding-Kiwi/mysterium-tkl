@@ -37,6 +37,7 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 #define ENCODER_DIRECTION_FLIP
 
 #define TAP_CODE_DELAY 10
+#define TAPPING_TERM 200
 
 /* oled config */
 #define CUSTOM_OLED_TIMEOUT 60000

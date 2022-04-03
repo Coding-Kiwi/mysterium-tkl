@@ -17,6 +17,7 @@
 #include "oled.h"
 
 bool win_key = false;
+bool ctrl_key = false;
 
 bool encoder_update_kb(uint8_t index, bool clockwise) {
     if (!encoder_update_user(index, clockwise)) return false;
@@ -28,6 +29,16 @@ bool encoder_update_kb(uint8_t index, bool clockwise) {
             tap_code16(G(C(KC_RIGHT)));
         } else {
             tap_code16(G(C(KC_LEFT)));
+        }
+        return false;
+    }
+
+    //ctrl + encoder is ctrl + z/y
+    if (ctrl_key) {
+        if (clockwise) {
+            tap_code(KC_Z);
+        } else {
+            tap_code(KC_Y);
         }
         return false;
     }
@@ -52,6 +63,9 @@ bool process_record_kb(uint16_t keycode, keyrecord_t *record) {
   switch (keycode) {
     case KC_LGUI:
       win_key = record->event.pressed;
+      return true;
+    case KC_LCTL:
+      ctrl_key = record->event.pressed;
       return true;
   }
 
