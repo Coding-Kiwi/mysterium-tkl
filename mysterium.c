@@ -14,6 +14,7 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 #include "mysterium.h"
+#include "raw.h"
 #include "oled.h"
 
 bool win_key = false;
@@ -76,7 +77,7 @@ bool process_record_kb(uint16_t keycode, keyrecord_t *record) {
     case KC_LGUI:
       win_key = record->event.pressed;
       return true;
-      
+
     case KC_LCTL:
       ctrl_key = record->event.pressed;
       return true;

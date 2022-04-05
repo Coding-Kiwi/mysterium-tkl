@@ -9,6 +9,11 @@ oled_rotation_t oled_init_kb(oled_rotation_t rotation) {
     return OLED_ROTATION_180;
 }
 
+void draw_test(void){
+    oled_set_cursor(0, 0);
+    oled_write_P(PSTR("Test\n"), false);
+}
+
 bool oled_task_kb(void) {
     if (!oled_task_user()) { return false; }
     if (!oled_task_needs_to_repaint()) {
@@ -19,6 +24,9 @@ bool oled_task_kb(void) {
         default:
         case OLED_BONGO:
             draw_bongo();
+            break;
+        case OLED_TEST:
+            draw_test();
             break;
     }
     return false;

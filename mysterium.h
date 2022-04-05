@@ -20,6 +20,7 @@
 
 enum oled_modes {
   OLED_BONGO,
+  OLED_TEST,
   OLED_OFF,
   _NUM_OLED_MODES
 };
