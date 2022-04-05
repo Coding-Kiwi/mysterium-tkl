@@ -61,9 +61,22 @@ bool process_record_kb(uint16_t keycode, keyrecord_t *record) {
   oled_request_wakeup();
 
   switch (keycode) {
+    case OLED_UP:
+      if (record->event.pressed) {
+        oled_mode = (oled_mode + 1) % _NUM_OLED_MODES;
+      }
+      return false;
+
+    case OLED_DOWN:
+      if (record->event.pressed) {
+        oled_mode = (oled_mode + _NUM_OLED_MODES - 1) % _NUM_OLED_MODES;
+      }
+      return false;
+
     case KC_LGUI:
       win_key = record->event.pressed;
       return true;
+      
     case KC_LCTL:
       ctrl_key = record->event.pressed;
       return true;

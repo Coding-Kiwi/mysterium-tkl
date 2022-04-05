@@ -24,6 +24,12 @@ enum oled_modes {
   _NUM_OLED_MODES
 };
 
+// Start these at the USER code range in VIA
+enum custom_keycodes {
+  OLED_UP = 0x5F80,
+  OLED_DOWN
+};
+
 // OLED Behavior
 extern uint8_t oled_mode;
 extern bool oled_repaint_requested;
