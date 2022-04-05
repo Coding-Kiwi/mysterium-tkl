@@ -1,3 +1,5 @@
+char screen_data_buffer[SERIAL_SCREEN_BUFFER_LENGTH - 1] = {0};
+
 uint8_t oled_mode = OLED_BONGO;
 bool oled_repaint_requested = false;
 bool oled_wakeup_requested = false;
@@ -11,7 +13,7 @@ oled_rotation_t oled_init_kb(oled_rotation_t rotation) {
 
 void draw_test(void){
     oled_set_cursor(0, 0);
-    oled_write_P(PSTR("Test\n"), false);
+    oled_write_P(screen_data_buffer, false);
 }
 
 bool oled_task_kb(void) {

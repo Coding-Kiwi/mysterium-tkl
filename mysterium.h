@@ -41,6 +41,9 @@ void oled_request_wakeup(void);
 void oled_request_repaint(void);
 bool oled_task_needs_to_repaint(void);
 
+// OLED Buffer
+#define SERIAL_SCREEN_BUFFER_LENGTH (21 * 4 + 1)
+extern char screen_data_buffer[SERIAL_SCREEN_BUFFER_LENGTH - 1];
 
 // helper variable to make keymaps easier to read?
 #define _x_ KC_NO
