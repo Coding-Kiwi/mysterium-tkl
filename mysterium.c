@@ -85,3 +85,59 @@ bool process_record_kb(uint16_t keycode, keyrecord_t *record) {
 
   return process_record_user(keycode, record);
 }
+
+bool is_hid_connected = false; // Flag indicating if we have a PC connection yet
+int screen_data_index = 0; // Current index into the screen_data_buffer that we should write to
+
+void raw_hid_receive(uint8_t *data, uint8_t length) {
+    uint8_t *command_id = &(data[0]);
+    uint8_t *command_value = &(data[1]);
+    uint8_t *command_data = &(data[2]);
+
+    is_hid_connected = true;
+
+    switch (*command_id) {
+        case id_get_keyboard_value:
+        {
+            switch(command_value[0]){
+                case id_oled_mode:
+                {
+                    command_data[0] = oled_mode;
+                    break;
+                }
+            }
+            break;
+        }
+        case id_set_keyboard_value:
+        {
+            switch(command_value[0]){
+                case id_oled_mode:
+                    oled_mode = command_data[0];
+                    break;
+
+                case id_oled_buffer:
+                case id_oled_buffer_data:
+                    if(command_value[0] == id_oled_buffer){
+                        // New connection so restart screen_data_buffer
+                        screen_data_index = 0;
+                    }
+
+                    //copy 21 bytes from data starting at index 1 to screen_data_buffer
+                    memcpy(screen_data_buffer + (screen_data_index * 21), &command_data[0], 21);
+
+                    screen_data_index++;
+
+                    if (screen_data_index == 4) {
+                        // Make sure to zero terminate the buffer
+                        screen_data_buffer[sizeof(screen_data_buffer) - 1] = 0;
+
+                        oled_request_wakeup();
+                    }
+                    break;
+            }
+            break;
+        }
+    }
+
+    raw_hid_send(data, length);
+}

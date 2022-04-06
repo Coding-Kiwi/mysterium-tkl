@@ -43,7 +43,7 @@ bool oled_task_needs_to_repaint(void);
 
 // OLED Buffer
 #define SERIAL_SCREEN_BUFFER_LENGTH (21 * 4 + 1)
-extern char screen_data_buffer[SERIAL_SCREEN_BUFFER_LENGTH - 1];
+extern char screen_data_buffer[SERIAL_SCREEN_BUFFER_LENGTH];
 
 // helper variable to make keymaps easier to read?
 #define _x_ KC_NO
